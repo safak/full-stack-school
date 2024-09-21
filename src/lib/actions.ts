@@ -147,6 +147,7 @@ export const createTeacher = async (
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
+      publicMetadata:{role:"teacher"}
     });
 
     await prisma.teacher.create({
@@ -266,6 +267,7 @@ export const createStudent = async (
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
+      publicMetadata:{role:"student"}
     });
 
     await prisma.student.create({
