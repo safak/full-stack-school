@@ -38,14 +38,15 @@ const AttendanceChartContainer = async () => {
 
   resData.forEach((item) => {
     const itemDate = new Date(item.date);
-
+    const dayOfWeek = itemDate.getDay();
+    
     if (dayOfWeek >= 1 && dayOfWeek <= 5) {
-      const dayDame = daysOfWeek[dayOfWeek - 1];
+      const dayName = daysOfWeek[dayOfWeek - 1];
 
       if (item.present) {
-        attendanceMap[dayDame].present += 1;
+        attendanceMap[dayName].present += 1;
       } else {
-        attendanceMap[dayDame].absent += 1;
+        attendanceMap[dayName].absent += 1;
       }
     }
   });
