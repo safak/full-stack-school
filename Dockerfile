@@ -10,11 +10,20 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+# Copy Prisma schema first
+COPY prisma ./prisma
+
+# Generate Prisma Client 
+RUN npx prisma generate
+
 # Copy the rest of the application code
 COPY . .
 
+#  Prevent SWC binary download crash
+ENV NEXT_DISABLE_SWC_DOWNLOAD=1
+
 # Generate Database
-RUN npx prisma migrate dev --name init
+#RUN npx prisma migrate dev --name init
 
 # Build the Next.js application
 RUN npm run build
